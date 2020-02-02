@@ -4,7 +4,7 @@ describe 'adding to cart' do
   fixtures :all
 
   it 'can add a performance to a cart' do
-    login_as(users(:buyer), scope: :user)
+    sign_in users(:buyer), scope: :user
     visit event_path(events(:bums))
     performance = events(:bum).performances.first
     within("#performance_#{performance.id}") do
