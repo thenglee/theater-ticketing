@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_02_02_081350) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.integer "performance_id", null: false
     t.integer "status"
     t.integer "access"
