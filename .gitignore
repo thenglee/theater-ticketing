@@ -28,3 +28,6 @@
 /config/master.key
 
 /config/secrets.yml
+.env
+.env.development
+.env.test

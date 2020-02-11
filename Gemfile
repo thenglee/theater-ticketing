@@ -27,6 +27,9 @@ gem "devise"
 gem 'slim'
 gem "sprockets"
 
+gem "dotenv-rails"
+gem "stripe"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -57,6 +60,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem "vcr"
+  gem "webmock"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
