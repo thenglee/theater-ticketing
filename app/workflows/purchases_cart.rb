@@ -40,7 +40,7 @@ class PurchasesCart
   def charge
     charge = StripeCharge.charge(token: stripe_token, payment: payment)
     payment.update!(
-      status: charge.status, response_id: charge.id,
-      full_response: charge.to_json)
+       status: charge.status, response_id: charge.id,
+       full_response: charge.to_json)
   end
 end

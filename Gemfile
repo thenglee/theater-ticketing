@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 gem "devise"
 gem 'slim'
 gem "sprockets"
+gem "babel-transpiler"
+gem 'sprockets-es6'
 
 gem "dotenv-rails"
 gem "stripe"
@@ -36,6 +38,7 @@ gem "stripe"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'money-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,7 +60,10 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'capybara-screenshot'
+  gem 'database_cleaner'
+  gem 'fake_stripe'
   gem 'selenium-webdriver'
+  gem 'poltergeist'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem "vcr"
