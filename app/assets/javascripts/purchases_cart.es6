@@ -1,16 +1,27 @@
-class StripeForm {
+class PaymentFormHandler {
   constructor() {
     this.checkoutForm = new CheckoutForm()
     this.initSubmitHandler()
+    this.initPaymentTypeHandler()
   }
 
   initSubmitHandler() {
-    this.checkoutForm.form().submit((event) => { this.handleSubmit(event) })
+    this.checkoutForm.form().submit((event) => {
+      if (!this.checkoutForm.isPaypal()) {
+        this.handleSubmit(event)
+      }
+    })
+  }
+
+  initPaymentTypeHandler() {
+    this.checkoutForm.paymentTypeRadio().click(() => {
+      console.log("clicked!")
+      this.checkoutForm.setCreditCardVisibility()
+    })
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    event.stopPropagation()
     if (this.checkoutForm.isButtonDisabled()) { return false }
     this.checkoutForm.disableButton()
     Stripe.card.createToken(this.checkoutForm.form(), TokenHandler.handle)
@@ -37,6 +48,18 @@ class CheckoutForm {
       .val(value)
     this.form().append(field)
   }
+
+  paymentTypeRadio() { return $(".payment-type-radio") }
+
+  selectedPaymentType() { return $("input[name=payment_type]:checked").val() }
+
+  creditCardForm() { return $("#credit-card-info") }
+
+  isPayPal() { return this.selectedPaymentType() === "paypal" }
+
+  setCreditCardVisibility() {
+    this.creditCardForm().toggleClass("hidden", this.isPayPal())
+  }
 }
 
 class TokenHandler {
@@ -60,5 +83,5 @@ class TokenHandler {
   }
 }
 
-$(() => new StripeForm())
+$(() => new PaymentFormHandler())
 
