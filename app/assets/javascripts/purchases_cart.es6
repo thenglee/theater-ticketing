@@ -7,8 +7,8 @@ class PaymentFormHandler {
   }
 
   initEventHandlers() {
-    this.checkoutForm.form().submit((event) => {
-      if (!this.checkoutForm.isPaypal()) {
+    this.checkoutForm.form().submit(event => {
+      if (!this.checkoutForm.isPayPal()) {
         this.handleSubmit(event)
       }
     })

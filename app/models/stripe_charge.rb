@@ -33,7 +33,7 @@ class StripeCharge
   end
 
   def success_attributes
-    { status: :succeeded, response_id: response.id,
+    { status: response.status, response_id: response.id,
       full_response: response.to_json }
   end
 

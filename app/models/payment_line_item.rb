@@ -7,4 +7,8 @@ class PaymentLineItem < ApplicationRecord
   delegate :id, to: :event, prefix: true, allow_nil: true
 
   monetize :price_cents
+
+  def tickets
+    buyable
+  end
 end
