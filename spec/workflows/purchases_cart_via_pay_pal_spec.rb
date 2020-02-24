@@ -9,13 +9,9 @@ describe PurchasesCartViaPayPal, :vcr, :aggregate_failures do
     let(:ticket_3) { create(:ticket, status: "unsold", performance: performance)  }
     let(:user) { create(:user) }
 
-    let(:workflow) { PurchasesCartViaPayPal.new(user: user, purchase_amount_cents: 3000) }
+    let(:workflow) { PurchasesCartViaPayPal.new(user: user, purchase_amount_cents: 3000, expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}") }
 
     before(:example) do
-      # allow(Payment).to receive(:generate_reference).and_return("fred")
-      # allow(Payment).to receive(:create!).with(attributes).and_return(payment)
-      # allow(payment).to receive(:update!).with(status: "succeeded", response_id: a_string_starting_with("ch_"), full_response: a_truthy_value)
-      # expect(payment).to receive(:create_line_items).with([ticket_1, ticket_2])
       [ticket_1, ticket_2].each { |t| t.place_in_cart_for(user) }
       workflow.run
     end
