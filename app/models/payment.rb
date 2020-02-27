@@ -2,7 +2,7 @@ class Payment < ApplicationRecord
 
   include HasReference
 
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :payment_line_items
   has_many :tickets, through: :payment_line_items,
                      source_type: "Ticket", source: "buyable"
