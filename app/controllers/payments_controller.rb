@@ -34,7 +34,7 @@ class PaymentsController < ApplicationController
   end
 
   def paypal_workflow
-    workflow = PurchasesCartViaPayPal.new(
+    workflow = PreparesCartForPayPal.new(
       user: current_user,
       purchase_amount_cents: params[:purchase_amount_cents],
       expected_ticket_ids: params[:ticket_ids])
@@ -44,7 +44,7 @@ class PaymentsController < ApplicationController
 
   def stripe_workflow
     @reference = Payment.generate_reference
-    PurchasesCartJob.perform_later(
+    PreparesCartForStripeJob.perform_later(
       user: current_user,
       params: card_params,
       purchase_amount_cents: params[:purchase_amount_cents],

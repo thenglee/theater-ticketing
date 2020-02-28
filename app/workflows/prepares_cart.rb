@@ -1,4 +1,4 @@
-class PurchasesCart
+class PreparesCart
 
   attr_accessor :user, :purchase_amount, :success, :payment, :expected_ticket_ids, :payment_reference
 
@@ -9,15 +9,6 @@ class PurchasesCart
     @continue = true
     @expected_ticket_ids = expected_ticket_ids.split(" ").map(&:to_i).sort
     @payment_reference = payment_reference || Payment.generate_reference
-  end
-
-  def run
-    Payment.transaction do
-      pre_purchase
-      purchase
-      post_purchase
-      @success = @continue
-    end
   end
 
   def pre_purchase_valid?
@@ -35,16 +26,14 @@ class PurchasesCart
     Payment.find_by(reference: payment_reference)
   end
 
-  def pre_purchase
-    return true if existing_payment
-    unless pre_purchase_valid?
-      @continue = false
-      return
+  def run
+    Payment.transaction do
+      return if existing_payment
+      return unless pre_purchase_valid?
+      update_tickets
+      create_payment
+      success? ? on_success : on_failure
     end
-
-    update_tickets
-    create_payment
-    @continue = true
   end
 
   def redirect_on_success_url
@@ -55,6 +44,7 @@ class PurchasesCart
     self.payment = existing_payment || Payment.new
     payment.update!(payment_attributes)
     payment.create_line_items(tickets)
+    @success = payment.valid?
   end
 
   def payment_attributes
@@ -68,19 +58,5 @@ class PurchasesCart
 
   def unpurchase_tickets
     tickets.each(&:waiting!)
-  end
-
-  def reverse_purchase
-    unpurchase_tickets
-    @continue = false
-  end
-
-  def calculate_success
-    payment.succeeded?
-  end
-
-  def post_purchase
-    return unless @continue
-    @continue = calculate_success
   end
 end

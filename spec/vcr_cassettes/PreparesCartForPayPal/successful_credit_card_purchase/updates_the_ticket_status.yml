@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sandbox.paypal.com/v1/oauth2/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - PayPalSDK/PayPal-Ruby-SDK 1.7.4 (paypal-sdk-core 1.7.4; ruby 2.6.3p62-x86_64-darwin14;OpenSSL
+        1.1.1d  10 Sep 2019)
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Authorization:
+      - Basic QWRsODBzZUJIa2F2X0k0VjRSdFIzaVMyVll0blMtSldULUJHTDJET3Z6TWl0UEtwSEtWbXA1cVVmdF9HV0Ewb0RDbWVveHljd2hzU1d0b0g6RUYydC1VTXVMSFREQXFBaDNLWndXbHVJVFNvTUNNYkxoN0dnVVgxWXNGMU03ZHB0MjVsRXdjNlhEOXZWYmJWX0VHczF5WVFxSThDMXBza04=
+      Paypal-Request-Id:
+      - 94a19eb3-abe6-45fd-9ffe-93bd4ae50618
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Content-Length:
+      - '918'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Feb 2020 07:19:09 GMT
+      Paypal-Debug-Id:
+      - 7e2134d3634af
+      X-Paypal-Token-Service:
+      - IAAS
+    body:
+      encoding: UTF-8
+      string: '{"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer
+        https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller
+        https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller
+        https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card
+        https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts
+        https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions
+        https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAE5okTOoAJLcyuxxsVGRdW2FElPn3zsIbQwcozLv3S6oNFOOEg8faxYf1-bAIdL2KhXCzBgMbDO46ILL2GSsYAf5N_DNQ","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32400,"nonce":"2020-02-28T07:19:09ZYm3DL0wpwzSGCU0i5Hfs0roRn0w2SJhKok8xaFf2zWA"}'
+    http_version: null
+  recorded_at: Fri, 28 Feb 2020 07:19:09 GMT
+- request:
+    method: post
+    uri: https://api.sandbox.paypal.com/v1/payments/payment
+    body:
+      encoding: UTF-8
+      string: '{"intent":"sale","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"currency":"USD","total":"30.00"},"item_list":{"items":[{"sku":"1","name":"1","quantity":"1","price":"15.00","currency":"USD"},{"sku":"1","name":"2","quantity":"1","price":"15.00","currency":"USD"}]}}],"redirect_urls":{"return_url":"http:///paypal/approved","cancel_url":"http:///paypal/rejected"}}'
+    headers:
+      Authorization:
+      - Bearer A21AAE5okTOoAJLcyuxxsVGRdW2FElPn3zsIbQwcozLv3S6oNFOOEg8faxYf1-bAIdL2KhXCzBgMbDO46ILL2GSsYAf5N_DNQ
+      Content-Type:
+      - application/json
+      User-Agent:
+      - PayPalSDK/PayPal-Ruby-SDK 1.7.4 (paypal-sdk-core 1.7.4; ruby 2.6.3p62-x86_64-darwin14;OpenSSL
+        1.1.1d  10 Sep 2019)
+      Paypal-Request-Id:
+      - 94a19eb3-abe6-45fd-9ffe-93bd4ae50618
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Content-Language:
+      - "*"
+      Content-Length:
+      - '805'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Feb 2020 07:19:11 GMT
+      Paypal-Debug-Id:
+      - 1028af63b806b
+    body:
+      encoding: UTF-8
+      string: '{"id":"PAYID-LZML53Y8DB75480UG148530X","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"30.00","currency":"USD"},"item_list":{"items":[{"name":"1","sku":"1","price":"15.00","currency":"USD","quantity":1},{"name":"2","sku":"1","price":"15.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2020-02-28T07:19:11Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LZML53Y8DB75480UG148530X","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-1KA39621MN763060D","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LZML53Y8DB75480UG148530X/execute","rel":"execute","method":"POST"}]}'
+    http_version: null
+  recorded_at: Fri, 28 Feb 2020 07:19:11 GMT
+recorded_with: VCR 5.1.0

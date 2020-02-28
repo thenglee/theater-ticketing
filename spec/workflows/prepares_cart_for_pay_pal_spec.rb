@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PurchasesCartViaPayPal, :vcr, :aggregate_failures do
+describe PreparesCartForPayPal, :vcr, :aggregate_failures do
 
   describe "successful credit card purchase", :vcr do
     let(:performance) { create(:performance, event: create(:event)) }
@@ -9,7 +9,7 @@ describe PurchasesCartViaPayPal, :vcr, :aggregate_failures do
     let(:ticket_3) { create(:ticket, status: "unsold", performance: performance, payment_reference: "reference") }
     let(:user) { create(:user) }
 
-    let(:workflow) { PurchasesCartViaPayPal.new(user: user, purchase_amount_cents: 3000, expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}", payment_reference: "reference") }
+    let(:workflow) { PreparesCartForPayPal.new(user: user, purchase_amount_cents: 3000, expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}", payment_reference: "reference") }
 
     before(:example) do
       [ticket_1, ticket_2].each { |t| t.place_in_cart_for(user) }

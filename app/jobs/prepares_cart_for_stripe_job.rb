@@ -1,4 +1,4 @@
-class PurchasesCartJob < ApplicationJob
+class PreparesCartForStripeJob < ApplicationJob
   queue_as :default
 
   def perform(user:, purchase_amount_cents:, expected_ticket_ids:,
@@ -9,7 +9,7 @@ class PurchasesCartJob < ApplicationJob
       ticket.update(payment_reference: payment_reference)
     end
 
-    purchases_cart_workflow = PurchasesCartViaStripe.new(
+    purchases_cart_workflow = PreparesCartForStripe.new(
       user: user, stripe_token: token,
       purchase_amount_cents: purchase_amount_cents,
       expected_ticket_ids: expected_ticket_ids,
