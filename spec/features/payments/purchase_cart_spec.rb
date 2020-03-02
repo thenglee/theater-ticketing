@@ -2,6 +2,8 @@ require "rails_helper"
 require "fake_stripe"
 
 describe "purchasing a cart", :js do
+  include ActiveJob::TestHelper
+
   fixtures :all
 
   before(:each) do

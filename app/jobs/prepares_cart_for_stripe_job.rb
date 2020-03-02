@@ -1,6 +1,15 @@
 class PreparesCartForStripeJob < ApplicationJob
   queue_as :default
 
+  rescue from(ChargeSetupValidityException) do |exception|
+    PaymentMailer.notify_failure(exception).deliver_later
+    Rollbar.error(exception)
+  end
+
+  rescue from(PreExistingPaymentException) do |exception|
+    Rollbar.error(exception)
+  end
+
   def perform(user:, purchase_amount_cents:, expected_ticket_ids:,
              payment_reference:, params:)
     token = StripeToken.new(**card_params(params))

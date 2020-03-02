@@ -39,7 +39,7 @@ describe PreparesCartForStripe, :vcr, :aggrefate_failures do
       let(:workflow) { PreparesCartForStripe.new(user: user, purchase_amount_cents: 2500, stripe_token: token, expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}") }
 
       it "does not trigger payment if expected price is incorrect" do
-        workflow.run
+        expect { workflow.run }.to raise_error(ChargeSetupValidityException)
         expect(workflow).not_to be_pre_purchase_valid
         expect(Ticket.find(ticket_1.id)).to be_waiting
         expect(Ticket.find(ticket_2.id)).to be_waiting
@@ -53,7 +53,7 @@ describe PreparesCartForStripe, :vcr, :aggrefate_failures do
       let(:workflow) { PreparesCartForStripe.new(user: user, purchase_amount_cents: 3000, stripe_token: token, expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}") }
 
       it "does not trigger payment if expected tickets are incorrect" do
-        workflow.run
+        expect { workflow.run }.to raise_error(ChargeSetupValidityException)
         expect(workflow).not_to be_pre_purchase_valid
         expect(Ticket.find(ticket_1.id)).to be_waiting
         expect(Ticket.find(ticket_2.id)).to be_waiting

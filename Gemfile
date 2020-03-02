@@ -37,6 +37,8 @@ gem "paypal-sdk-rest"
 gem "delayed_job_active_record"
 gem "daemons"
 
+gem 'rollbar'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

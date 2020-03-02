@@ -215,6 +215,7 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rollbar (2.24.0)
     rspec-core (3.9.1)
       rspec-support (~> 3.9.1)
     rspec-expectations (3.9.0)
@@ -341,6 +342,7 @@ DEPENDENCIES
   poltergeist
   puma (~> 3.11)
   rails (~> 6.0.0)
+  rollbar
   rspec-rails (~> 3.9.0)
   sass-rails (~> 5)
   sassc-rails (>= 2.1.0)
