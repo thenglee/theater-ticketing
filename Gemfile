@@ -37,6 +37,12 @@ gem "paypal-sdk-rest"
 gem "delayed_job_active_record"
 gem "daemons"
 
+gem "activeadmin"
+gem "active_admin_theme"
+gem 'cancancan'
+gem 'draper'
+gem 'pundit'
+
 gem 'rollbar'
 
 # Use Active Storage variant

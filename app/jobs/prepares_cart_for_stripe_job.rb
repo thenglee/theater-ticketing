@@ -1,12 +1,12 @@
 class PreparesCartForStripeJob < ApplicationJob
   queue_as :default
 
-  rescue from(ChargeSetupValidityException) do |exception|
-    PaymentMailer.notify_failure(exception).deliver_later
+  rescue_from(ChargeSetupValidityException) do |exception|
+    PaymentMailer.notify_failure(exception.to_s).deliver_later
     Rollbar.error(exception)
   end
 
-  rescue from(PreExistingPaymentException) do |exception|
+  rescue_from(PreExistingPaymentException) do |exception|
     Rollbar.error(exception)
   end
 

@@ -34,9 +34,17 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def pick_user
+    if current_user.admin? && params[:user_email].present?
+      User.find_or_create_by(email: params[:user_email])
+    else
+      current_user
+    end
+  end
+
   def stripe_subscription_workflow
     workflow = CreatesSubscriptionViaStripe.new(
-      user: current_user,
+      user: pick_user,
       expected_subscription_id: params[:subscription_ids].first,
       token: StripeToken.new(**card_params))
     workflow.run
