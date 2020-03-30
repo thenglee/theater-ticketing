@@ -5,7 +5,7 @@ describe ExecutesStripePurchase, :vcr, :aggregate_failures do
   let(:user) { create(:user) }
   let(:payment) { Payment.create(
     user_id: user.id, price_cents: 2500, status: "created",
-    reference: "reference", payment_method: "stripe") }
+    reference: Payment.generate_reference, payment_method: "stripe") }
   let(:action) { ExecutesStripePurchase.new(payment, token.id) }
 
   describe "successful credit card purchase" do

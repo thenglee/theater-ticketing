@@ -22,6 +22,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require jquery.cardswipe
 //= require_tree .
 //= require jquery.payment
+//= require jquery.cardswipe

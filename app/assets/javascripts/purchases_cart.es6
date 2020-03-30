@@ -165,10 +165,9 @@ class TokenHandler {
   }
 }
 
-$(() => new PaymentFormHandler())
 
 $(() => {
-  if ($("#admin_credit_card_info").size() > 0) {
+  if ($("#admin_credit_card_info").length > 0) {
     $.cardswipe({
       firstLineOnly: false,
       success: CheckoutForm.cardswipe,
@@ -177,7 +176,7 @@ $(() => {
     })
   }
 
-  if ($(".credit_card_form").size() > 0) {
+  if ($(".credit-card-form").length > 0) {
     return new PaymentFormHandler()
   }
 

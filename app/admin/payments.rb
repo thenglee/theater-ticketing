@@ -27,6 +27,12 @@ ActiveAdmin.register Payment do
     column :reference
     column :user
     column :price
+    column :discount
+    column :discount_code do |payment|
+      if payment.discount_code
+        link_to payment.discount_code&.code, admin_discount_code_path(payment.discount_code)
+      end
+    end
     column :status
     column :payment_method
     column :created_at
@@ -37,6 +43,12 @@ ActiveAdmin.register Payment do
     attributes_table do
     row :reference
     row :price
+    row :discount
+    row :discount_code do |payment|
+      if payment.discount_code
+        link_to payment.discount_code&.code, admin_discount_code_path(payment.discount_code)
+      end
+    end
     row :status
     row :payment_method
     row :user

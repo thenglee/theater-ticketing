@@ -11,7 +11,7 @@ class PreparesCartForStripeJob < ApplicationJob
   end
 
   def perform(user:, purchase_amount_cents:, expected_ticket_ids:,
-             payment_reference:, params:)
+             payment_reference:, params:, discount_code_string:)
     token = StripeToken.new(**card_params(params))
 
     user.tickets_in_cart.each do |ticket|
@@ -22,7 +22,8 @@ class PreparesCartForStripeJob < ApplicationJob
       user: user, stripe_token: token,
       purchase_amount_cents: purchase_amount_cents,
       expected_ticket_ids: expected_ticket_ids,
-      payment_reference: payment_reference)
+      payment_reference: payment_reference,
+      discount_code_string: discount_code_string)
     purchases_cart_workflow.run
   end
 

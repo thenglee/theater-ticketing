@@ -1,9 +1,14 @@
 class ShoppingCart
 
-  attr_accessor :user
+  attr_accessor :user, :discount_code_string
 
-  def initialize(user)
+  def initialize(user, discount_code_string = nil)
     @user = user
+    @discount_code_string = discount_code_string
+  end
+
+  def discount_code
+    @discount_code ||= DiscountCode.find_by(code: discount_code_string)
   end
 
   def tickets
@@ -35,7 +40,7 @@ class ShoppingCart
   end
 
   def total_cost
-    tickets.map(&:price).sum
+    PriceCalculator.new(tickets, discount_code).total_price
   end
 
   def item_attribute

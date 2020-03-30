@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sandbox.paypal.com/v1/payments/payment
+    body:
+      encoding: UTF-8
+      string: '{"intent":"sale","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"currency":"USD","total":"22.50"},"item_list":{"items":[{"sku":"990805834","name":"3","quantity":"1","price":"15.00","currency":"USD"},{"sku":"990805834","name":"4","quantity":"1","price":"15.00","currency":"USD"}]}}],"redirect_urls":{"return_url":"http:///paypal/approved","cancel_url":"http:///paypal/rejected"}}'
+    headers:
+      Authorization:
+      - Bearer A21AAFW6gjSvnlC7VB4eimRmNZ9Hfe3XPl44TpG11PFdtupI1zcyqlb7f_zJKkRehQef3lFW2fln2sYjPGCVOFpt-3QxwXPNA
+      Content-Type:
+      - application/json
+      User-Agent:
+      - PayPalSDK/PayPal-Ruby-SDK 1.7.4 (paypal-sdk-core 1.7.4; ruby 2.6.3p62-x86_64-darwin14;OpenSSL
+        1.1.1d  10 Sep 2019)
+      Paypal-Request-Id:
+      - b8a450b2-3795-41c5-92e2-db32cf7edfa2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Content-Language:
+      - "*"
+      Content-Length:
+      - '318'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 30 Mar 2020 10:18:54 GMT
+      Paypal-Debug-Id:
+      - 170328c78107d
+    body:
+      encoding: UTF-8
+      string: '{"name":"VALIDATION_ERROR","details":[{"field":"transactions[0]","issue":"Item
+        amount must add up to specified amount subtotal (or total if amount details
+        not specified)"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"170328c78107d"}'
+    http_version: null
+  recorded_at: Mon, 30 Mar 2020 10:18:54 GMT
+recorded_with: VCR 5.1.0

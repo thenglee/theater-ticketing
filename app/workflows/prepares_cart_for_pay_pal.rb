@@ -22,4 +22,7 @@ class PreparesCartForPayPal < PreparesCart
     payment.update(response_id: pay_pal_payment.response_id)
     payment.pending!
   end
+
+  def on_failure
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_034545) do
+ActiveRecord::Schema.define(version: 2020_03_30_100458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 2020_03_12_034545) do
     t.datetime "created_at", precision: 6
     t.datetime "updated_at", precision: 6
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "discount_codes", force: :cascade do |t|
+    t.string "code"
+    t.integer "percentage"
+    t.text "description"
+    t.integer "minimum_amount_cents", default: 0, null: false
+    t.string "minimum_amount_currency", default: "USD", null: false
+    t.integer "maximum_discount_cents", default: 0, null: false
+    t.string "maximum_discount_currency", default: "USD", null: false
+    t.integer "max_uses"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -82,7 +95,11 @@ ActiveRecord::Schema.define(version: 2020_03_12_034545) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "original_payment_id"
     t.bigint "administrator_id"
+    t.bigint "discount_code_id"
+    t.integer "discount_cents", default: 0, null: false
+    t.string "discount_currency", default: "USD", null: false
     t.index ["administrator_id"], name: "index_payments_on_administrator_id"
+    t.index ["discount_code_id"], name: "index_payments_on_discount_code_id"
     t.index ["original_payment_id"], name: "index_payments_on_original_payment_id"
     t.index ["reference"], name: "index_payments_on_reference"
     t.index ["user_id"], name: "index_payments_on_user_id"
