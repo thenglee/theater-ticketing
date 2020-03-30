@@ -8,7 +8,7 @@ class PaymentFormHandler {
 
   initEventHandlers() {
     this.checkoutForm.form().submit(event => {
-      if (!this.checkoutForm.isPayPal()) {
+      if (this.checkoutForm.isCredit()) {
         this.handleSubmit(event)
       }
     })
@@ -135,8 +135,11 @@ class CheckoutForm {
 
   isPayPal() { return this.selectedPaymentType() === "paypal" }
 
+  isCredit() { return this.selectedPaymentType() === "credit" }
+
   setCreditCardVisibility() {
-    this.creditCardForm().toggleClass("hidden", this.isPayPal())
+    this.creditCardForm().toggleClass("hidden", !this.isCredit())
+    this.isCredit() ? this.disableButton() :  this.enableButton()
   }
 }
 

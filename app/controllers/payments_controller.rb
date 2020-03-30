@@ -12,6 +12,8 @@ class PaymentsController < ApplicationController
       return
     end
 
+    normalize_purchase_amount
+
     workflow = run_workflow(params[:payment_type], params[:purchase_type])
 
     if workflow.success
@@ -31,12 +33,25 @@ class PaymentsController < ApplicationController
       :stripe_token).to_h.symbolize_keys
   end
 
+  def normalize_purchase_amount
+    return if params[:purchase_amount].blank?
+    params[:purchase_amount_cents] =
+      (params[:purchase_amount].to_f * 100).to_i
+  end
+
   def run_workflow(payment_type, purchase_type)
     case purchase_type
-    when "SubscriptionCart"
-      stripe_subscription_workflow
-    when "ShoppingCart"
-      payment_type == "paypal" ? paypal_workflow : stripe_workflow
+    when "SubscriptionCart" then stripe_subscription_workflow
+    when "ShoppingCart" then payment_workflow(payment_type)
+    end
+  end
+
+  def payment_workflow(payment_type)
+    case payment_type
+    when "paypal" then paypal_workflow
+    when "credit" then stripe_workflow
+    when "cash" then cash_workflow
+    when "invoice" then cash_workflow
     end
   end
 
@@ -46,6 +61,16 @@ class PaymentsController < ApplicationController
     else
       current_user
     end
+  end
+
+  def cash_workflow
+    workflow = CashPurchasesCart.new(
+      user: pick_user,
+      purchase_amount_cents: params[:purchase_amount_cents],
+      expected_ticket_ids: params[:ticket_ids],
+      discount_code_string: session[:new_discount_code])
+    workflow.run
+    workflow
   end
 
   def stripe_subscription_workflow
