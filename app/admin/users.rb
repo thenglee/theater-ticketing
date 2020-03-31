@@ -59,4 +59,10 @@ ActiveAdmin.register User do
     end
   end
 
+  action_item :simulate_user, only: :show do
+    link_to("Simulate User", user_simulation_path(id_to_simulate: resource.id),
+            method: :post, class: "action-edit",
+            data: { confirm: "Do you want to simulate this user?" })
+  end
+
 end

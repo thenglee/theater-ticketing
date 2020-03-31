@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resource :shopping_cart
   resource :subscription_cart
 
+  resource :user_simulation, only: %i(create destroy)
+
   resources :payments
   resources :users
   resources :plans
