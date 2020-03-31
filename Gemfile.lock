@@ -135,6 +135,8 @@ GEM
       activemodel-serializers-xml (>= 1.0)
       activesupport (>= 5.0)
       request_store (>= 1.0)
+    email_prefixer (1.2.0)
+      rails (>= 4.0)
     erubi (1.9.0)
     execjs (2.7.0)
     factory_bot (5.1.1)
@@ -193,6 +195,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
+    mail_interceptor (0.0.7)
+      activesupport
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
@@ -401,11 +405,13 @@ DEPENDENCIES
   devise
   dotenv-rails
   draper
+  email_prefixer
   factory_bot_rails
   fake_stripe
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  mail_interceptor
   money-rails
   paper_trail
   paypal-sdk-rest
