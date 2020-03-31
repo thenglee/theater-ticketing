@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+
   ActiveAdmin.routes(self)
+
   root to: "visitors#index"
-  devise_for :users
+
+  devise_for :users, controllers: { sessions: "users/sessions" }
+  devise_scope :user do
+    post "users/sessions/verify" => "Users::SessionsController"
+  end
+
   resources :events
 
   resource :shopping_cart

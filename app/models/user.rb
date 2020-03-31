@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :tickets
   has_many :subscriptions
 
+  attr_accessor :cellphone_number
+
   def tickets_in_cart
     tickets.waiting.all.to_a
   end

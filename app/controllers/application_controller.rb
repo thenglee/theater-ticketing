@@ -12,6 +12,11 @@ class ApplicationController < ActionController::Base
     raise Pundit::NotAuthorizedError unless current_user&.admin?
   end
 
+  def current_user
+    return nil if session[:awaiting_authy_user_id].present?
+    super
+  end
+
   # def authenticate_admin!
   #   redirect_to new_user_session_path unless current_user&.admin?
   # end

@@ -76,6 +76,8 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     arbre (1.2.1)
       activesupport (>= 3.0.0)
+    authy (2.7.5)
+      httpclient (>= 2.5.3.3)
     autoprefixer-rails (9.7.4)
       execjs
     babel-source (5.8.35)
@@ -154,6 +156,7 @@ GEM
       actionpack (>= 4.1)
       activesupport (>= 4.1)
     hashdiff (1.0.0)
+    httpclient (2.8.3)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.11.0)
@@ -384,6 +387,7 @@ PLATFORMS
 DEPENDENCIES
   active_admin_theme
   activeadmin
+  authy
   babel-transpiler
   bootsnap (>= 1.4.2)
   bootstrap-sass
