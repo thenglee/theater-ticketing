@@ -5,7 +5,7 @@ ActiveAdmin.register Payment do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :user_id, :price_cents, :price_currency, :status, :reference, :payment_method, :response_id, :full_response
+  permit_params :price, :discount, :status, :payment_method
   #
   # or
   #
@@ -57,6 +57,14 @@ ActiveAdmin.register Payment do
     row :full_response
     end
     active_admin_comments
+  end
+
+  form do |f|
+    f.input :price
+    f.input :discount
+    f.input :status
+    f.input :payment_method
+    f.actions
   end
 
   action_item :refund, only: :show do

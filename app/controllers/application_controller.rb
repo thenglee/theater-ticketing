@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  before_action :set_paper_trail_whodunnit
+
   def authenticate_admin_user!
     raise Pundit::NotAuthorizedError unless current_user&.admin?
   end

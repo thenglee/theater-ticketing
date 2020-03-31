@@ -44,6 +44,7 @@ gem 'draper'
 gem 'pundit'
 
 gem 'rollbar'
+gem "paper_trail"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
