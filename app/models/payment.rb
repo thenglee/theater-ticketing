@@ -54,7 +54,7 @@ class Payment < ApplicationRecord
   end
 
   def maximum_available_refund
-    (price.cents + refunds.map(&:price).sum).abs
+    (price.cents + refunds.map(&:price_cents).sum).abs
   end
 
   def can_refund?(price)

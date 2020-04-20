@@ -5,7 +5,7 @@ FactoryBot.define do
     status { 1 }
     reference { "MyString" }
     payment_method { "MyString" }
-    response_id { "MyString" }
+    response_id { nil }
     full_response { "" }
   end
 end

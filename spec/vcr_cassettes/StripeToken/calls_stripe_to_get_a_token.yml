@@ -13,6 +13,8 @@ http_interactions:
       - Bearer sk_test_9XcreVOMmIA1lYgd7EIRwfSr
       Content-Type:
       - application/x-www-form-urlencoded
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_PO5gTEnhNFt2vK","request_duration_ms":572}}'
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"5.14.0","lang":"ruby","lang_version":"2.6.3 p62 (2019-04-16)","platform":"x86_64-darwin14","engine":"ruby","publisher":"stripe","uname":"Darwin
         Theng-Lee.local 14.5.0 Darwin Kernel Version 14.5.0: Sun Jun  4 21:40:08 PDT
@@ -29,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 30 Mar 2020 10:18:46 GMT
+      - Mon, 20 Apr 2020 13:17:04 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +51,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_C2SFPqHqqTdIOA
+      - req_axZlpkK22tjIGK
       Stripe-Version:
       - '2019-12-03'
       Strict-Transport-Security:
@@ -58,10 +60,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_1GSKheHXfg0hMUponQHhVGJL",
+          "id": "tok_1GZzUiHXfg0hMUpodhcvKrHp",
           "object": "token",
           "card": {
-            "id": "card_1GSKhdHXfg0hMUpoP2enKRbU",
+            "id": "card_1GZzUiHXfg0hMUpoMcUeR6mX",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -85,12 +87,12 @@ http_interactions:
             "name": null,
             "tokenization_method": null
           },
-          "client_ip": "180.129.36.86",
-          "created": 1585563526,
+          "client_ip": "180.129.106.7",
+          "created": 1587388624,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: null
-  recorded_at: Mon, 30 Mar 2020 10:18:46 GMT
+  recorded_at: Mon, 20 Apr 2020 13:17:05 GMT
 recorded_with: VCR 5.1.0
