@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_091451) do
+ActiveRecord::Schema.define(version: 2020_04_20_134412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_091451) do
     t.bigint "discount_code_id"
     t.integer "discount_cents", default: 0, null: false
     t.string "discount_currency", default: "USD", null: false
+    t.json "partials"
     t.index ["administrator_id"], name: "index_payments_on_administrator_id"
     t.index ["discount_code_id"], name: "index_payments_on_discount_code_id"
     t.index ["original_payment_id"], name: "index_payments_on_original_payment_id"
