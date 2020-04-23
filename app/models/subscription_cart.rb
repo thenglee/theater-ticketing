@@ -6,6 +6,10 @@ class SubscriptionCart
     @user = user
   end
 
+  def address
+    nil
+  end
+
   def subscriptions
     @subscriptions ||= user.subscriptions_in_cart
   end

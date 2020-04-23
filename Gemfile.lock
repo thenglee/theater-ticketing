@@ -106,6 +106,8 @@ GEM
       capybara (>= 1.0, < 4)
       launchy
     childprocess (3.0.0)
+    city-state (0.1.0)
+      rubyzip (>= 1.1)
     cliver (0.3.2)
     concurrent-ruby (1.1.6)
     crack (0.4.3)
@@ -399,6 +401,7 @@ DEPENDENCIES
   cancancan
   capybara (>= 2.15)
   capybara-screenshot
+  city-state
   daemons
   database_cleaner
   delayed_job_active_record

@@ -38,7 +38,25 @@ describe "purchasing a cart", :js do
       fill_in :discount_code, with: "CODE"
       click_on "apply_code"
       expect(page).to have_selector(".active_code", text: "CODE")
-      expect(page).to have_selector(".total", text: "$22.50")
+      expect(page).to have_selector(".total", text: "$23.50")
+    end
+  end
+
+  context "can add a shipping method" do
+    it "comes back to the cart with shipping" do
+      tickets(:midsummer_bums_1).place_in_cart_for(users(:buyer))
+      tickets(:midsummer_bums_2).place_in_cart_for(users(:buyer))
+      login_as(users(:buyer), scope: :user)
+      visit shopping_cart_path
+      click_on "shipping_details"
+      fill_in "address_address_1", with: "1060 W. Addison"
+      fill_in "address_city", with: "Chicago"
+      select "Illinois", from: "address_state"
+      fill_in "address_zip", with: "60613"
+      select "Overnight", from: "shipping_method"
+      click_on "add_address"
+      expect(page).to have_selector(".active_shipping_method", text: "overnight")
+      expect(page).to have_selector(".total", text: "$41")
     end
   end
 end

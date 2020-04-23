@@ -2,9 +2,10 @@ require "rails_helper"
 
 describe ShoppingCart do
 
-  let(:cart) { ShoppingCart.new(user) }
+  let(:cart) { ShoppingCart.new(user: user) }
 
-  let(:user) { instance_double("User") }
+  # let(:user) { instance_double("User") }
+  let(:user) { create(:user) }
   let(:romeo) { instance_double("Event", name: "Romeo and Juliet") }
   let(:hamlet) { instance_double("Event", name: "Hamlet") }
   let(:romeo_performance) { instance_spy("Performance", id: 1, event: romeo) }
@@ -36,6 +37,6 @@ describe ShoppingCart do
   end
 
   it "calculates entire total" do
-    expect(cart.total_cost).to eq(Money.new(4500))
+    expect(cart.total_cost).to eq(Money.new(4600))
   end
 end
