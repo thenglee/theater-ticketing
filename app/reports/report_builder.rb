@@ -29,7 +29,7 @@ class ReportBuilder
               when :csv
                 CsvBuilder.new(columns, options, collection, output || "")
               else
-                Builder.new(columns, options, collection, output || [])
+                DataBuilder.new(columns, options, collection, output || [])
               end
     builder.build
   end

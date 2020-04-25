@@ -21,6 +21,7 @@ describe ExecutesStripePurchase, :vcr, :aggregate_failures do
       expect(action.payment).to have_attributes(
         status: "succeeded", response_id: a_string_starting_with("ch_"),
         full_response: action.stripe_charge.response.to_json)
+      expect(NotifyTaxCloudJob).not_to receive(:perform_later).with(payment)
     end
   end
 

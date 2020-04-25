@@ -28,6 +28,7 @@ class ExecutesStripePurchase
 
   def on_success
     PaymentMailer.notify_success(payment).deliver_later
+    NotifyTaxCloudJob.perform_later(payment) if payment.shipping_address.present?
   end
 
   def on_failure

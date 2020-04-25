@@ -12,10 +12,11 @@ class ShoppingCart < ApplicationRecord
 
   def price_calculator
     @price_calculator ||= PriceCalculator.new(
-      tickets, discount_code, shipping_method.to_sym)
+      tickets, discount_code, shipping_method.to_sym,
+      address: address, user: user, tax_id: "cart_#{id}")
   end
 
-  delegate :processing_fee, to: :price_calculator
+  delegate :processing_fee, :shipping_fee, :sales_tax, :discount, to: :price_calculator
 
   def total_cost
     price_calculator.total_price

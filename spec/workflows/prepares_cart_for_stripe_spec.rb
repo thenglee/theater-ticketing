@@ -53,16 +53,18 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
       end
     end
 
-    context "with a shipping method" do
+    context "with a shipping method", :vcr do
       let(:address) { create(:address) }
       let(:shopping_cart) { create(:shopping_cart, user: user, discount_code: discount_code,
                                    shipping_method: :standard, address: address) }
-      let(:attributes) { { user_id: user.id, price_cents: 3300, reference: a_truthy_value, status: "created",
+      let(:attributes) { { user_id: user.id, price_cents: 3321, reference: a_truthy_value, status: "created",
                            discount_code_id: nil, payment_method: "stripe",
-                           partials: { ticket_cents: [1500, 1500], processing_fee_cents: 100,
-                           shipping_cents: 200 },
+                           partials: {
+                             ticket_cents: [1500, 1500], processing_fee_cents: 100,
+                             shipping_cents: 200,
+                             sales_tax: { ticket_cents: 0, processing_cents: 0, shipping_cents: 21 } },
                            shipping_method: "standard", shipping_address: address } }
-      let(:workflow) { PreparesCartForStripe.new(user: user, purchase_amount_cents: 3300, stripe_token: token, expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}", payment_reference: "reference", shopping_cart: shopping_cart) }
+      let(:workflow) { PreparesCartForStripe.new(user: user, purchase_amount_cents: 3321, stripe_token: token, expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}", payment_reference: "reference", shopping_cart: shopping_cart) }
 
       it "handles shipping" do
         workflow.run

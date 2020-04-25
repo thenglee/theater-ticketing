@@ -27,6 +27,7 @@ RSpec.describe CreatesStripeRefund, :vcr, :aggregate_failures do
         payment_action.run
         refund_payment = payment.generate_refund_payment(
           amount_cents: 2500, admin: administrator)
+        expect(NotifyTaxCloudOfRefundJob).to receive(:perform_later).with(refund_payment)
         workflow = CreatesStripeRefund.new(payment_to_refund: refund_payment)
         workflow.run
 

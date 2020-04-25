@@ -18,7 +18,9 @@ class PreparesCart
   end
 
   def price_calculator
-    @price_calculator ||= PriceCalculator.new(tickets, discount_code, shopping_cart.shipping_method)
+    @price_calculator ||= PriceCalculator.new(tickets, discount_code, shopping_cart.shipping_method,
+                                              address: shopping_cart.address, user: user,
+                                              tax_id: "cart_#{shopping_cart.id}")
   end
 
   def pre_purchase_valid?
@@ -36,7 +38,11 @@ class PreparesCart
 
   def tickets
     @tickets ||= @user.tickets_in_cart.select do |ticket|
-      ticket.payment_reference == payment_reference
+      if ticket.payment_reference
+        ticket.payment_reference == payment_reference
+      else
+        true
+      end
     end
   end
 

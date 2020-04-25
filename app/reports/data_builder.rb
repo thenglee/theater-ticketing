@@ -2,7 +2,7 @@
 # https://github.com/activeadmin/activeadmin
 # The ActiveAdmin code is Copyright (c) Greg Bell, VersaPay Corporation
 
-class Builder
+class DataBuilder
 
   attr_accessor :collection, :output, :columns, :options
 

@@ -2,6 +2,63 @@
 http_interactions:
 - request:
     method: post
+    uri: https://api.taxcloud.net/1.0/taxcloud.asmx
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://taxcloud.net"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:Lookup><tns:customerID>76570590</tns:customerID><tns:cartID>cart_19</tns:cartID><tns:cartItems><tns:CartItem><tns:Index>0</tns:Index><tns:ItemID>Ticket</tns:ItemID><tns:TIC>91083</tns:TIC><tns:Price>30.0</tns:Price><tns:Qty>1</tns:Qty></tns:CartItem><tns:CartItem><tns:Index>1</tns:Index><tns:ItemID>Processing</tns:ItemID><tns:TIC>10010</tns:TIC><tns:Price>1.0</tns:Price><tns:Qty>1</tns:Qty></tns:CartItem><tns:CartItem><tns:Index>2</tns:Index><tns:ItemID>Shipping</tns:ItemID><tns:TIC>11000</tns:TIC><tns:Price>2.0</tns:Price><tns:Qty>1</tns:Qty></tns:CartItem></tns:cartItems><tns:origin><tns:Address1>1060
+        W. Addison</tns:Address1><tns:Address2 xsi:nil="true"/><tns:City>Chicago</tns:City><tns:State>IL</tns:State><tns:Zip5>60613</tns:Zip5><tns:Zip4
+        xsi:nil="true"/></tns:origin><tns:destination><tns:Address1>1061 W. Addison</tns:Address1><tns:Address2></tns:Address2><tns:City>Chicago</tns:City><tns:State>IL</tns:State><tns:Zip5>60613</tns:Zip5><tns:Zip4
+        xsi:nil="true"/></tns:destination><tns:apiLoginID>30A9E2C0</tns:apiLoginID><tns:apiKey>9071a865-8d95-4d4d-965c-40fc53376c05</tns:apiKey></tns:Lookup></env:Body></env:Envelope>
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.8.3, ruby 2.6.3 (2019-04-16))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 25 Apr 2020 16:01:40 GMT
+      Soapaction:
+      - '"http://taxcloud.net/Lookup"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '1390'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private, max-age=0
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/8.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TaxCloud
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,PUT,POST,DELETE,OPTIONS
+      Access-Control-Allow-Headers:
+      - Content-Type, X-Requested-With
+      Date:
+      - Sat, 25 Apr 2020 16:01:40 GMT
+      Content-Length:
+      - '724'
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><LookupResponse
+        xmlns="http://taxcloud.net"><LookupResult><ResponseType>OK</ResponseType><Messages
+        /><CartID>cart_19</CartID><CartItemsResponse><CartItemResponse><CartItemIndex>0</CartItemIndex><TaxAmount>0</TaxAmount></CartItemResponse><CartItemResponse><CartItemIndex>1</CartItemIndex><TaxAmount>0</TaxAmount></CartItemResponse><CartItemResponse><CartItemIndex>2</CartItemIndex><TaxAmount>0.21</TaxAmount></CartItemResponse></CartItemsResponse></LookupResult></LookupResponse></soap:Body></soap:Envelope>
+    http_version: null
+  recorded_at: Sat, 25 Apr 2020 16:01:41 GMT
+- request:
+    method: post
     uri: https://api.stripe.com/v1/tokens
     body:
       encoding: UTF-8
@@ -14,7 +71,7 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_I8Fv8EdOL1D2UT","request_duration_ms":2}}'
+      - '{"last_request_metrics":{"request_id":"req_IMJ7GIzA50gbPB","request_duration_ms":2747}}'
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"5.14.0","lang":"ruby","lang_version":"2.6.3 p62 (2019-04-16)","platform":"x86_64-darwin14","engine":"ruby","publisher":"stripe","uname":"Darwin
         Theng-Lee.local 14.5.0 Darwin Kernel Version 14.5.0: Sun Jun  4 21:40:08 PDT
@@ -31,11 +88,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 21 Apr 2020 09:11:11 GMT
+      - Sat, 25 Apr 2020 16:01:42 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '787'
+      - '786'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -51,7 +108,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_VutXLFYSm0Y7yY
+      - req_htvK5ktubkLEoc
       Stripe-Version:
       - '2019-12-03'
       Strict-Transport-Security:
@@ -60,10 +117,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_1GaI8JHXfg0hMUporQ01mRLg",
+          "id": "tok_1GbqRmHXfg0hMUpoQG4fL9NI",
           "object": "token",
           "card": {
-            "id": "card_1GaI8IHXfg0hMUpooyEaVw4j",
+            "id": "card_1GbqRmHXfg0hMUpo2ETwXwxU",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -87,20 +144,20 @@ http_interactions:
             "name": null,
             "tokenization_method": null
           },
-          "client_ip": "138.75.101.170",
-          "created": 1587460271,
+          "client_ip": "138.75.152.65",
+          "created": 1587830502,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 09:11:11 GMT
+  recorded_at: Sat, 25 Apr 2020 16:01:42 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=3300&currency=usd&source=tok_1GaI8JHXfg0hMUporQ01mRLg&description=&metadata[reference]=e103ce5a0a0aa1677935
+      string: amount=3321&currency=usd&source=tok_1GbqRmHXfg0hMUpoQG4fL9NI&description=&metadata[reference]=88a63af236c8968a9dc3
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/5.14.0
@@ -109,13 +166,13 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_VutXLFYSm0Y7yY","request_duration_ms":635}}'
+      - '{"last_request_metrics":{"request_id":"req_htvK5ktubkLEoc","request_duration_ms":882}}'
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"5.14.0","lang":"ruby","lang_version":"2.6.3 p62 (2019-04-16)","platform":"x86_64-darwin14","engine":"ruby","publisher":"stripe","uname":"Darwin
         Theng-Lee.local 14.5.0 Darwin Kernel Version 14.5.0: Sun Jun  4 21:40:08 PDT
         2017; root:xnu-2782.70.3~1/RELEASE_X86_64 x86_64","hostname":"Theng-Lee.local"}'
       Idempotency-Key:
-      - e103ce5a0a0aa1677935
+      - 88a63af236c8968a9dc3
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -128,11 +185,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 21 Apr 2020 09:11:11 GMT
+      - Sat, 25 Apr 2020 16:01:43 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '2939'
+      - '2938'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -148,11 +205,11 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Idempotency-Key:
-      - e103ce5a0a0aa1677935
+      - 88a63af236c8968a9dc3
       Original-Request:
-      - req_9AObMAT3TfWFCB
+      - req_y66Do2SGHpR5bz
       Request-Id:
-      - req_9AObMAT3TfWFCB
+      - req_y66Do2SGHpR5bz
       Stripe-Should-Retry:
       - 'false'
       Stripe-Version:
@@ -163,14 +220,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_1GaI8JHXfg0hMUpooTQl7lLt",
+          "id": "ch_1GbqRmHXfg0hMUpoxZp8DBtv",
           "object": "charge",
-          "amount": 3300,
+          "amount": 3321,
           "amount_refunded": 0,
           "application": null,
           "application_fee": null,
           "application_fee_amount": null,
-          "balance_transaction": "txn_1GaI8JHXfg0hMUpo9clCaeHa",
+          "balance_transaction": "txn_1GbqRnHXfg0hMUpoMv6z16hI",
           "billing_details": {
             "address": {
               "city": null,
@@ -186,7 +243,7 @@ http_interactions:
           },
           "calculated_statement_descriptor": "Stripe",
           "captured": true,
-          "created": 1587460271,
+          "created": 1587830502,
           "currency": "usd",
           "customer": null,
           "description": "",
@@ -200,7 +257,7 @@ http_interactions:
           "invoice": null,
           "livemode": false,
           "metadata": {
-            "reference": "e103ce5a0a0aa1677935"
+            "reference": "88a63af236c8968a9dc3"
           },
           "on_behalf_of": null,
           "order": null,
@@ -208,13 +265,13 @@ http_interactions:
             "network_status": "approved_by_network",
             "reason": null,
             "risk_level": "normal",
-            "risk_score": 58,
+            "risk_score": 1,
             "seller_message": "Payment complete.",
             "type": "authorized"
           },
           "paid": true,
           "payment_intent": null,
-          "payment_method": "card_1GaI8IHXfg0hMUpooyEaVw4j",
+          "payment_method": "card_1GbqRmHXfg0hMUpo2ETwXwxU",
           "payment_method_details": {
             "card": {
               "brand": "visa",
@@ -238,7 +295,7 @@ http_interactions:
           },
           "receipt_email": null,
           "receipt_number": null,
-          "receipt_url": "https://pay.stripe.com/receipts/acct_187d9OHXfg0hMUpo/ch_1GaI8JHXfg0hMUpooTQl7lLt/rcpt_H8ZGdy9HtwuNXrgxbgvhagpr6z9v3LD",
+          "receipt_url": "https://pay.stripe.com/receipts/acct_187d9OHXfg0hMUpo/ch_1GbqRmHXfg0hMUpoxZp8DBtv/rcpt_HAAnULvTbLi2aoGRKvSHuBzROzyQIyf",
           "refunded": false,
           "refunds": {
             "object": "list",
@@ -247,12 +304,12 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/charges/ch_1GaI8JHXfg0hMUpooTQl7lLt/refunds"
+            "url": "/v1/charges/ch_1GbqRmHXfg0hMUpoxZp8DBtv/refunds"
           },
           "review": null,
           "shipping": null,
           "source": {
-            "id": "card_1GaI8IHXfg0hMUpooyEaVw4j",
+            "id": "card_1GbqRmHXfg0hMUpo2ETwXwxU",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -285,5 +342,116 @@ http_interactions:
           "transfer_group": null
         }
     http_version: null
-  recorded_at: Tue, 21 Apr 2020 09:11:12 GMT
+  recorded_at: Sat, 25 Apr 2020 16:01:43 GMT
+- request:
+    method: post
+    uri: https://api.taxcloud.net/1.0/taxcloud.asmx
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://taxcloud.net"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:Lookup><tns:customerID>76570590</tns:customerID><tns:cartID>payment_88a63af236c8968a9dc3</tns:cartID><tns:cartItems><tns:CartItem><tns:Index>0</tns:Index><tns:ItemID>Ticket</tns:ItemID><tns:TIC>91083</tns:TIC><tns:Price>30.0</tns:Price><tns:Qty>1</tns:Qty></tns:CartItem><tns:CartItem><tns:Index>1</tns:Index><tns:ItemID>Processing</tns:ItemID><tns:TIC>10010</tns:TIC><tns:Price>1.0</tns:Price><tns:Qty>1</tns:Qty></tns:CartItem><tns:CartItem><tns:Index>2</tns:Index><tns:ItemID>Shipping</tns:ItemID><tns:TIC>11000</tns:TIC><tns:Price>2.0</tns:Price><tns:Qty>1</tns:Qty></tns:CartItem></tns:cartItems><tns:origin><tns:Address1>1060
+        W. Addison</tns:Address1><tns:Address2 xsi:nil="true"/><tns:City>Chicago</tns:City><tns:State>IL</tns:State><tns:Zip5>60613</tns:Zip5><tns:Zip4
+        xsi:nil="true"/></tns:origin><tns:destination><tns:Address1>1061 W. Addison</tns:Address1><tns:Address2></tns:Address2><tns:City>Chicago</tns:City><tns:State>IL</tns:State><tns:Zip5>60613</tns:Zip5><tns:Zip4
+        xsi:nil="true"/></tns:destination><tns:apiLoginID>30A9E2C0</tns:apiLoginID><tns:apiKey>9071a865-8d95-4d4d-965c-40fc53376c05</tns:apiKey></tns:Lookup></env:Body></env:Envelope>
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.8.3, ruby 2.6.3 (2019-04-16))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 25 Apr 2020 16:01:43 GMT
+      Soapaction:
+      - '"http://taxcloud.net/Lookup"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '1411'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private, max-age=0
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/8.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TaxCloud
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,PUT,POST,DELETE,OPTIONS
+      Access-Control-Allow-Headers:
+      - Content-Type, X-Requested-With
+      Date:
+      - Sat, 25 Apr 2020 16:01:43 GMT
+      Content-Length:
+      - '745'
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><LookupResponse
+        xmlns="http://taxcloud.net"><LookupResult><ResponseType>OK</ResponseType><Messages
+        /><CartID>payment_88a63af236c8968a9dc3</CartID><CartItemsResponse><CartItemResponse><CartItemIndex>0</CartItemIndex><TaxAmount>0</TaxAmount></CartItemResponse><CartItemResponse><CartItemIndex>1</CartItemIndex><TaxAmount>0</TaxAmount></CartItemResponse><CartItemResponse><CartItemIndex>2</CartItemIndex><TaxAmount>0.21</TaxAmount></CartItemResponse></CartItemsResponse></LookupResult></LookupResponse></soap:Body></soap:Envelope>
+    http_version: null
+  recorded_at: Sat, 25 Apr 2020 16:01:45 GMT
+- request:
+    method: post
+    uri: https://api.taxcloud.net/1.0/taxcloud.asmx
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://taxcloud.net"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:AuthorizedWithCapture><tns:customerID>76570590</tns:customerID><tns:cartID>payment_88a63af236c8968a9dc3</tns:cartID><tns:orderID>88a63af236c8968a9dc3</tns:orderID><tns:dateAuthorized>2020-04-26</tns:dateAuthorized><tns:dateCaptured>2020-04-26</tns:dateCaptured><tns:apiLoginID>30A9E2C0</tns:apiLoginID><tns:apiKey>9071a865-8d95-4d4d-965c-40fc53376c05</tns:apiKey></tns:AuthorizedWithCapture></env:Body></env:Envelope>
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.8.3, ruby 2.6.3 (2019-04-16))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 25 Apr 2020 16:01:45 GMT
+      Soapaction:
+      - '"http://taxcloud.net/AuthorizedWithCapture"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '669'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private, max-age=0
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/8.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TaxCloud
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,PUT,POST,DELETE,OPTIONS
+      Access-Control-Allow-Headers:
+      - Content-Type, X-Requested-With
+      Date:
+      - Sat, 25 Apr 2020 16:01:44 GMT
+      Content-Length:
+      - '439'
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><AuthorizedWithCaptureResponse
+        xmlns="http://taxcloud.net"><AuthorizedWithCaptureResult><ResponseType>OK</ResponseType><Messages
+        /></AuthorizedWithCaptureResult></AuthorizedWithCaptureResponse></soap:Body></soap:Envelope>
+    http_version: null
+  recorded_at: Sat, 25 Apr 2020 16:01:46 GMT
 recorded_with: VCR 5.1.0

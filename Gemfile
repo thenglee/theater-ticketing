@@ -56,6 +56,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'money-rails'
 
 gem "city-state"
+gem "tax_cloud"
 
 
 group :development, :test do

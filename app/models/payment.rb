@@ -11,6 +11,7 @@ class Payment < ApplicationRecord
   belongs_to :administrator, class_name: "User", optional: true
   has_many :refunds, class_name: "Payment",
                      foreign_key: "original_payment_id"
+  belongs_to :discount_code, optional: true
   belongs_to :original_payment, class_name: "Payment", optional: true
   belongs_to :billing_address, class_name: "Address", optional: true
   belongs_to :shipping_address, class_name: "Address", optional: true
@@ -22,6 +23,16 @@ class Payment < ApplicationRecord
                  refund_pending: 4, refunded: 5 }
 
   enum shipping_method: { electronic: 0, standard: 1, overight: 2 }
+
+  def price_calculator
+    @price_calculator ||= PriceCalculator.new(tickets, discount_code, shipping_method,
+                                              address: shipping_address, user: user,
+                                              tax_id: "payment_#{reference}")
+  end
+
+  def paid_taxes
+    partials.fetch("sales_tax", {}).values.sum
+  end
 
   def total_cost
     tickets.map(&:price).sum

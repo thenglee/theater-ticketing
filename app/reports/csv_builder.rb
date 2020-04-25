@@ -2,7 +2,7 @@
 # https://github.com/activeadmin/activeadmin
 # The ActiveAdmin code is Copyright (c) Greg Bell, VersaPay Corporation
 
-class CsvBuilder < Builder
+class CsvBuilder < DataBuilder
 
   def add_byte_order_mark
     bom = options.fetch(:byte_order_mark, false)
