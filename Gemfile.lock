@@ -94,7 +94,10 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    brakeman (4.8.1)
     builder (3.2.4)
+    bundler-audit (0.3.0)
+      bundler (~> 1.2)
     byebug (11.1.1)
     cancancan (3.0.2)
     capybara (3.31.0)
@@ -422,6 +425,8 @@ DEPENDENCIES
   babel-transpiler
   bootsnap (>= 1.4.2)
   bootstrap-sass
+  brakeman
+  bundler-audit
   byebug
   cancancan
   capybara (>= 2.15)
