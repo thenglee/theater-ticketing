@@ -14,14 +14,21 @@ class StripeCharge
   def charge
     return if response.present?
 
-    @response = Stripe::Charge.create(
-      { amount: payment.price.cents, currency: 'usd',
-        source: token.id, description: '',
-        metadata: { reference: payment.reference } },
-      idempotency_key: payment.reference)
+    @response = Stripe::Charge.create(charge_parameters, idempotency_key: payment.reference)
   rescue Stripe::StripeError => e
     @response = nil
     @error = e
+  end
+
+  def charge_parameters
+    parameters = { amount: payment.price.cents, currency: 'usd',
+                   source: token.id, description: '',
+                   metadata: { reference: payment.reference } }
+    if payment.active_affiliate.present?
+      parameters[:destination] = payment.affiliate.stripe_id
+      parameters[:application_fee] = payment.application_fee.cents
+    end
+    parameters
   end
 
   def success?

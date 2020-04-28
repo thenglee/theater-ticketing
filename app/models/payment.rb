@@ -15,9 +15,11 @@ class Payment < ApplicationRecord
   belongs_to :original_payment, class_name: "Payment", optional: true
   belongs_to :billing_address, class_name: "Address", optional: true
   belongs_to :shipping_address, class_name: "Address", optional: true
+  belongs_to :affiliate, optional: true
 
   monetize :price_cents
   monetize :discount_cents
+  monetize :affiliate_payment_cents
 
   enum status: { created: 0, succeeded: 1, pending: 2, failed: 3,
                  refund_pending: 4, refunded: 5 }
@@ -30,8 +32,17 @@ class Payment < ApplicationRecord
                                               tax_id: "payment_#{reference}")
   end
 
+  def active_affiliate
+    affiliate&.stripe_charges_enabled ? affiliate : nil
+  end
+
   def paid_taxes
     partials.fetch("sales_tax", {}).values.sum
+  end
+
+  def application_fee
+    return Money.zero if affiliate.blank?
+    price - affiliate_payment
   end
 
   def total_cost

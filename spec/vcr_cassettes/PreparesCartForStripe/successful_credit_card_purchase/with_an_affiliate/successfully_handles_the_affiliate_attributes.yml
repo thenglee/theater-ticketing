@@ -14,7 +14,7 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_4UiTZC80xCb6Ql","request_duration_ms":1211}}'
+      - '{"last_request_metrics":{"request_id":"req_ocIKSxajkWNns8","request_duration_ms":1177}}'
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"5.14.0","lang":"ruby","lang_version":"2.6.3 p62 (2019-04-16)","platform":"x86_64-darwin14","engine":"ruby","publisher":"stripe","uname":"Darwin
         Theng-Lee.local 14.5.0 Darwin Kernel Version 14.5.0: Sun Jun  4 21:40:08 PDT
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 28 Apr 2020 15:11:00 GMT
+      - Tue, 28 Apr 2020 15:10:58 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -51,7 +51,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_ixPXiGEZ64Weyk
+      - req_6y0mo24SfZkgVk
       Stripe-Version:
       - '2019-12-03'
       Strict-Transport-Security:
@@ -60,10 +60,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_1Gcv5MHXfg0hMUporAvoWseY",
+          "id": "tok_1Gcv5KHXfg0hMUpoSrlAdEu6",
           "object": "token",
           "card": {
-            "id": "card_1Gcv5LHXfg0hMUpoAMRp3qwu",
+            "id": "card_1Gcv5JHXfg0hMUpoF1az8iov",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -88,19 +88,19 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "138.75.82.40",
-          "created": 1588086660,
+          "created": 1588086658,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: null
-  recorded_at: Tue, 28 Apr 2020 15:11:00 GMT
+  recorded_at: Tue, 28 Apr 2020 15:10:58 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=2350&currency=usd&source=tok_1Gcv5MHXfg0hMUporAvoWseY&description=&metadata[reference]=76a9160ad55842e60435
+      string: amount=3100&currency=usd&source=tok_1Gcv5KHXfg0hMUpoSrlAdEu6&description=&metadata[reference]=bcf239238618309e2044
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/5.14.0
@@ -109,13 +109,13 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_ixPXiGEZ64Weyk","request_duration_ms":560}}'
+      - '{"last_request_metrics":{"request_id":"req_6y0mo24SfZkgVk","request_duration_ms":721}}'
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"5.14.0","lang":"ruby","lang_version":"2.6.3 p62 (2019-04-16)","platform":"x86_64-darwin14","engine":"ruby","publisher":"stripe","uname":"Darwin
         Theng-Lee.local 14.5.0 Darwin Kernel Version 14.5.0: Sun Jun  4 21:40:08 PDT
         2017; root:xnu-2782.70.3~1/RELEASE_X86_64 x86_64","hostname":"Theng-Lee.local"}'
       Idempotency-Key:
-      - 76a9160ad55842e60435
+      - bcf239238618309e2044
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -128,7 +128,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 28 Apr 2020 15:11:01 GMT
+      - Tue, 28 Apr 2020 15:10:59 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -148,11 +148,11 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Idempotency-Key:
-      - 76a9160ad55842e60435
+      - bcf239238618309e2044
       Original-Request:
-      - req_PxAf7iL0oJMTJI
+      - req_4UiTZC80xCb6Ql
       Request-Id:
-      - req_PxAf7iL0oJMTJI
+      - req_4UiTZC80xCb6Ql
       Stripe-Should-Retry:
       - 'false'
       Stripe-Version:
@@ -163,14 +163,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_1Gcv5MHXfg0hMUpokH8FH0va",
+          "id": "ch_1Gcv5KHXfg0hMUpowvitmpY5",
           "object": "charge",
-          "amount": 2350,
+          "amount": 3100,
           "amount_refunded": 0,
           "application": null,
           "application_fee": null,
           "application_fee_amount": null,
-          "balance_transaction": "txn_1Gcv5MHXfg0hMUpoDviiZQ5S",
+          "balance_transaction": "txn_1Gcv5LHXfg0hMUpoOuk3am3d",
           "billing_details": {
             "address": {
               "city": null,
@@ -186,7 +186,7 @@ http_interactions:
           },
           "calculated_statement_descriptor": "Stripe",
           "captured": true,
-          "created": 1588086660,
+          "created": 1588086658,
           "currency": "usd",
           "customer": null,
           "description": "",
@@ -200,7 +200,7 @@ http_interactions:
           "invoice": null,
           "livemode": false,
           "metadata": {
-            "reference": "76a9160ad55842e60435"
+            "reference": "bcf239238618309e2044"
           },
           "on_behalf_of": null,
           "order": null,
@@ -208,13 +208,13 @@ http_interactions:
             "network_status": "approved_by_network",
             "reason": null,
             "risk_level": "normal",
-            "risk_score": 39,
+            "risk_score": 13,
             "seller_message": "Payment complete.",
             "type": "authorized"
           },
           "paid": true,
           "payment_intent": null,
-          "payment_method": "card_1Gcv5LHXfg0hMUpoAMRp3qwu",
+          "payment_method": "card_1Gcv5JHXfg0hMUpoF1az8iov",
           "payment_method_details": {
             "card": {
               "brand": "visa",
@@ -238,7 +238,7 @@ http_interactions:
           },
           "receipt_email": null,
           "receipt_number": null,
-          "receipt_url": "https://pay.stripe.com/receipts/acct_187d9OHXfg0hMUpo/ch_1Gcv5MHXfg0hMUpokH8FH0va/rcpt_HBHe4ytfVPveWA6L1ZYNS1ZfJsqhb7N",
+          "receipt_url": "https://pay.stripe.com/receipts/acct_187d9OHXfg0hMUpo/ch_1Gcv5KHXfg0hMUpowvitmpY5/rcpt_HBHeRYrlmWgKWkpsIFseCYXzXXInjKg",
           "refunded": false,
           "refunds": {
             "object": "list",
@@ -247,12 +247,12 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/charges/ch_1Gcv5MHXfg0hMUpokH8FH0va/refunds"
+            "url": "/v1/charges/ch_1Gcv5KHXfg0hMUpowvitmpY5/refunds"
           },
           "review": null,
           "shipping": null,
           "source": {
-            "id": "card_1Gcv5LHXfg0hMUpoAMRp3qwu",
+            "id": "card_1Gcv5JHXfg0hMUpoF1az8iov",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -285,5 +285,5 @@ http_interactions:
           "transfer_group": null
         }
     http_version: null
-  recorded_at: Tue, 28 Apr 2020 15:11:01 GMT
+  recorded_at: Tue, 28 Apr 2020 15:10:59 GMT
 recorded_with: VCR 5.1.0

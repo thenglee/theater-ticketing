@@ -15,7 +15,7 @@ class PreparesCartForStripe < PreparesCart
   end
 
   def on_success
-    ExecutesStripePurchaseJob.perform_later(payment, stripe_token.id)
+    ExecutesStripePaymentJob.perform_later(payment, stripe_token.id)
   end
 
   def on_failure
@@ -27,6 +27,11 @@ class PreparesCartForStripe < PreparesCart
   end
 
   def payment_attributes
-    super.merge(payment_method: "stripe")
+    result = super.merge(payment_method: "stripe")
+    if shopping_cart.affiliate
+      result = result.merge(affiliate_id: shopping_cart.affiliate.id,
+                            affiliate_payment_cents: price_calculator.affiliate_payment.cents)
+    end
+    result
   end
 end

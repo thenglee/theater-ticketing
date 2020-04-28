@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   before_action :set_paper_trail_whodunnit
+  before_action :set_affiliate
 
   def authenticate_admin_user!
     raise Pundit::NotAuthorizedError unless current_user&.admin?
@@ -15,6 +16,13 @@ class ApplicationController < ActionController::Base
   # def authenticate_admin!
   #   redirect_to new_user_session_path unless current_user&.admin?
   # end
+
+  def set_affiliate
+    tag = params[:tag] || session[:affiliate_tag]
+    workflow = AddsAffiliateToCart.new(user: current_user, tag: tag)
+    workflow.run
+    session[:affiliate_tag] = tag
+  end
 
   def current_user
     return nil if session[:awaiting_authy_user_id].present?

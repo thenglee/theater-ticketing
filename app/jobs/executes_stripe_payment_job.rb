@@ -1,4 +1,4 @@
-class ExecutesStripePurchaseJob < ApplicationJob
+class ExecutesStripePaymentJob < ApplicationJob
   queue_as :default
 
   rescue_from(PreExistingPaymentException) do |exception|
@@ -6,7 +6,7 @@ class ExecutesStripePurchaseJob < ApplicationJob
   end
 
   def perform(payment, stripe_token)
-    charge_action = ExecutesStripePurchase.new(payment, stripe_token)
+    charge_action = ExecutesStripePayment.new(payment, stripe_token)
     charge_action.run
   end
 end

@@ -1,4 +1,4 @@
-class ExecutesStripePurchase
+class ExecutesStripePayment
 
   attr_accessor :payment, :stripe_token, :stripe_charge
 

@@ -39,6 +39,20 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
       expect(ShoppingCart.find_by(user_id: user.id)).to be_nil
     end
 
+    context "with an affiliate" do
+      let(:affiliate) { create(:affiliate, user: user) }
+
+      before(:example) do
+        shopping_cart.update(affiliate: affiliate)
+      end
+
+      it "successfully handles the affiliate attributes" do
+        workflow.run
+        expect(workflow.payment).to have_attributes(affiliate_id: affiliate.id,
+                                                    affiliate_payment_cents: 150)
+      end
+    end
+
     context "with discount code" do
       let(:workflow) { PreparesCartForStripe.new(user: user, purchase_amount_cents: 2350, stripe_token: token, expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}", payment_reference: "reference", shopping_cart: shopping_cart) }
       let(:discount_code_string) { "CODE" }

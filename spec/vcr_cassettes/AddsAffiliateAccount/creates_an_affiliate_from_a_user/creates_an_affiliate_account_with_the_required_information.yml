@@ -1,0 +1,168 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/accounts
+    body:
+      encoding: UTF-8
+      string: type=custom&requested_capabilities[0]=card_payments&requested_capabilities[1]=transfers
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/5.14.0
+      Authorization:
+      - Bearer sk_test_9XcreVOMmIA1lYgd7EIRwfSr
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"5.14.0","lang":"ruby","lang_version":"2.6.3 p62 (2019-04-16)","platform":"x86_64-darwin14","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Theng-Lee.local 14.5.0 Darwin Kernel Version 14.5.0: Sun Jun  4 21:40:08 PDT
+        2017; root:xnu-2782.70.3~1/RELEASE_X86_64 x86_64","hostname":"Theng-Lee.local"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 26 Apr 2020 14:44:49 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2260'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_bHdZchplqvjnFp
+      Stripe-Version:
+      - '2019-12-03'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "acct_1GcBiuLlVWsRBpY7",
+          "object": "account",
+          "business_profile": {
+            "mcc": null,
+            "name": null,
+            "product_description": null,
+            "support_address": null,
+            "support_email": null,
+            "support_phone": null,
+            "support_url": null,
+            "url": null
+          },
+          "business_type": null,
+          "capabilities": {
+            "card_payments": "inactive",
+            "transfers": "inactive"
+          },
+          "charges_enabled": false,
+          "country": "SG",
+          "created": 1587912289,
+          "default_currency": "sgd",
+          "details_submitted": false,
+          "email": null,
+          "external_accounts": {
+            "object": "list",
+            "data": [
+
+            ],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/accounts/acct_1GcBiuLlVWsRBpY7/external_accounts"
+          },
+          "metadata": {
+          },
+          "payouts_enabled": false,
+          "requirements": {
+            "current_deadline": null,
+            "currently_due": [
+              "business_type",
+              "external_account",
+              "relationship.representative",
+              "tos_acceptance.date",
+              "tos_acceptance.ip"
+            ],
+            "disabled_reason": "requirements.past_due",
+            "errors": [
+
+            ],
+            "eventually_due": [
+              "business_type",
+              "external_account",
+              "relationship.representative",
+              "tos_acceptance.date",
+              "tos_acceptance.ip"
+            ],
+            "past_due": [
+              "business_type",
+              "external_account",
+              "relationship.representative",
+              "tos_acceptance.date",
+              "tos_acceptance.ip"
+            ],
+            "pending_verification": [
+
+            ]
+          },
+          "settings": {
+            "branding": {
+              "icon": null,
+              "logo": null,
+              "primary_color": null,
+              "secondary_color": null
+            },
+            "card_payments": {
+              "decline_on": {
+                "avs_failure": false,
+                "cvc_failure": false
+              },
+              "statement_descriptor_prefix": null
+            },
+            "dashboard": {
+              "display_name": null,
+              "timezone": "Etc/UTC"
+            },
+            "payments": {
+              "statement_descriptor": "",
+              "statement_descriptor_kana": null,
+              "statement_descriptor_kanji": null
+            },
+            "payouts": {
+              "debit_negative_balances": false,
+              "schedule": {
+                "delay_days": 7,
+                "interval": "daily"
+              },
+              "statement_descriptor": null
+            }
+          },
+          "tos_acceptance": {
+            "date": null,
+            "ip": null,
+            "user_agent": null
+          },
+          "type": "custom"
+        }
+    http_version: null
+  recorded_at: Sun, 26 Apr 2020 14:44:49 GMT
+recorded_with: VCR 5.1.0

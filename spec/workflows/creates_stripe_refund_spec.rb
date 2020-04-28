@@ -15,7 +15,7 @@ RSpec.describe CreatesStripeRefund, :vcr, :aggregate_failures do
     let!(:payment_line_item) { create(:payment_line_item, payment: payment,
                                      buyable: ticket, price_cents: 1500,
                                      refund_status: "no_refund") }
-    let(:payment_action) { ExecutesStripePurchase.new(payment, token.id) }
+    let(:payment_action) { ExecutesStripePayment.new(payment, token.id) }
 
     describe "happy path end-to-end ish test" do
 

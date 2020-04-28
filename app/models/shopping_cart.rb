@@ -3,6 +3,7 @@ class ShoppingCart < ApplicationRecord
   belongs_to :user
   belongs_to :address, optional: true
   belongs_to :discount_code, optional: true
+  belongs_to :affiliate, optional: true
 
   enum shipping_method: { electronic: 0, standard: 1, overnight: 2 }
 
