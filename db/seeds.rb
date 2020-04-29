@@ -8,8 +8,10 @@
 
 require "active_record/fixtures"
 
-user = CreateAdminService.new.call
-Rails.logger.info("CREATED ADMIN USER: " << user.email)
+if Rails.env.development?
+  user = CreateAdminService.new.call
+  Rails.logger.info("CREATED ADMIN USER: " << user.email)
+end
 
 ActiveRecord::FixtureSet.create_fixtures("#{Rails.root}/spec/fixtures", "events")
 ActiveRecord::FixtureSet.create_fixtures("#{Rails.root}/spec/fixtures", "performances")
