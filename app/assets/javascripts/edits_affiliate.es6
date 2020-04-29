@@ -79,7 +79,7 @@ class BankAccountTokenHandler {
 }
 
 $(() => {
-  if ($(".bank_account_form").size() > 0) {
+  if ($(".bank_account_form").length > 0) {
     return new AffiliateFormHandler()
   }
   return null
