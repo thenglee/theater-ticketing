@@ -13,7 +13,7 @@ html(lang="en")
     = csrf_meta_tags
 
     javascript:
-      Stripe.setPublishableKey("#{Rails.application.secrets.stripe_publishable_key}");
+      Stripe.setPublishableKey("#{Rails.env.production? ? ENV['STRIPE_PUBLISHABLE_KEY'] : Rails.application.secrets.stripe_publishable_key}");
 
   body
     header
