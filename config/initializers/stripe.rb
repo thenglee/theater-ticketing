@@ -1,4 +1,4 @@
-Stripe.api_key = RAILS_ENV=="production" ? ENV["STRIPE_SECRET_KEY"] : Rails.application.secrets.stripe_secret_key
+Stripe.api_key = Rails.env.production? ? ENV["STRIPE_SECRET_KEY"] : Rails.application.secrets.stripe_secret_key
 raise "Missing Stripe API Key" unless Stripe.api_key
 STRIPE_JS_HOST = "https://js.stripe.com".freeze unless defined? STRIPE_JS_HOST
 STRIPE_JS_FILE = Rails.env.development? ? "stripe-debug.js" : ""
