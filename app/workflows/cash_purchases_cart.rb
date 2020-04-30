@@ -23,4 +23,8 @@ class CashPurchasesCart < PreparesCart
   def on_failure
     unpurchase_tickets
   end
+
+  def payment_type
+    "cash"
+  end
 end

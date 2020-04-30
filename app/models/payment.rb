@@ -24,7 +24,7 @@ class Payment < ApplicationRecord
   enum status: { created: 0, succeeded: 1, pending: 2, failed: 3,
                  refund_pending: 4, refunded: 5 }
 
-  enum shipping_method: { electronic: 0, standard: 1, overight: 2 }
+  enum shipping_method: { electronic: 0, standard: 1, overnight: 2 }
 
   def price_calculator
     @price_calculator ||= PriceCalculator.new(tickets, discount_code, shipping_method,

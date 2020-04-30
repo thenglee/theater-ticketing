@@ -34,4 +34,8 @@ class PreparesCartForStripe < PreparesCart
     end
     result
   end
+
+  def payment_type
+    "stripe"
+  end
 end

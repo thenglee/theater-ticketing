@@ -20,7 +20,7 @@ class PreparesCart
   def price_calculator
     @price_calculator ||= PriceCalculator.new(tickets, discount_code, shopping_cart.shipping_method,
                                               address: shopping_cart.address, user: user,
-                                              tax_id: "cart_#{shopping_cart.id}")
+                                              tax_id: "cart_#{shopping_cart.id}", payment_type: payment_type)
   end
 
   def pre_purchase_valid?
@@ -66,7 +66,7 @@ class PreparesCart
     end
   rescue
     on_failure
-    raise
+    raise unless payment_type == "pay_pal"
   end
 
   def clear_cart
@@ -85,7 +85,8 @@ class PreparesCart
   end
 
   def payment_attributes
-    { user_id: user.id, price_cents: purchase_amount.cents,
+    price = payment_type == "pay_pal" ? total_price.cents : purchase_amount.cents
+    { user_id: user.id, price_cents: price,
       status: "created", reference: Payment.generate_reference,
       discount_code_id: discount_code&.id,
       partials: price_calculator.breakdown,

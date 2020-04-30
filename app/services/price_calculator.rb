@@ -3,20 +3,24 @@ class PriceCalculator
   attr_accessor :tickets, :discount_code, :shipping, :user, :address, :tax_id
 
   def initialize(tickets = [], discount_code = nil, shipping = :none,
-                user: nil, address: nil, tax_id: nil)
+                user: nil, address: nil, tax_id: nil, payment_type: nil)
     @tickets = tickets
     @discount_code = discount_code || NullDiscountCode.new
     @shipping = shipping
     @user = user
     @address = address
     @tax_id = tax_id
+    @payment_type = payment_type
   end
 
   def processing_fee
+    return Money.zero if @payment_type == "pay_pal"
     (subtotal - discount).positive? ? Money.new(100) : Money.zero
   end
 
   def shipping_fee
+    return Money.zero if @payment_type == "pay_pal"
+
     case shipping.to_sym
     when :standard then Money.new(200)
     when :overnight then Money.new(1000)
@@ -45,6 +49,7 @@ class PriceCalculator
   end
 
   def sales_tax
+    return Money.zero if @payment_type == "pay_pal"
     return Money.zero if address.nil?
     tax_calculator.tax_amount
   end
@@ -68,7 +73,8 @@ class PriceCalculator
   end
 
   def base_price
-    subtotal - discount
+    checked_discount = @payment_type == "pay_pal" ? Money.zero : discount
+    subtotal - checked_discount
   end
 
   def discount

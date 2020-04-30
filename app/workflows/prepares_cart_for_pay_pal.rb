@@ -19,10 +19,21 @@ class PreparesCartForPayPal < PreparesCart
 
   def on_success
     @pay_pal_payment = PayPalPayment.new(payment: payment)
-    payment.update(response_id: pay_pal_payment.response_id)
+    response_id = pay_pal_payment.response_id
+    if pay_pal_payment.pay_pal_payment.success? == false
+      Rollbar.error(pay_pal_payment.pay_pal_payment.error, pay_pal_payment.pay_pal_payment.transactions)
+      raise PayPalPaymentException.new
+    end
+
+    payment.update(response_id: response_id)
     payment.pending!
   end
 
   def on_failure
+    @success = false
+  end
+
+  def payment_type
+    "pay_pal"
   end
 end
