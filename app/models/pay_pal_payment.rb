@@ -24,12 +24,12 @@ class PayPalPayment
   end
 
   def host_name
-    Rails.application.secrets.host_name
+    Rails.env.production? ? ENV["HOST_NAME"] : Rails.application.secrets.host_name
   end
 
   def redirect_info
-    { return_url: "http://#{host_name}/paypal/approved",
-      cancel_url: "http://#{host_name}/paypal/rejected" }
+    { return_url: "https://#{host_name}/paypal/approved",
+      cancel_url: "https://#{host_name}/paypal/rejected" }
   end
 
   def payment_info
