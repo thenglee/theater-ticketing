@@ -53,7 +53,7 @@ class PreparesCart
   def run
     Payment.transaction do
       raise PreExistingPaymentException.new(purchase) if existing_payment
-      unless pre_purchase_valid?
+      if payment_type != "pay_pal" && !pre_purchase_valid?
         raise ChargeSetupValidityException.new(
           user: user,
           expected_purchase_cents: purchase_amount.to_i,
