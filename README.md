@@ -14,6 +14,7 @@ Based on [Take My Money: Accepting Payments on the Web by Noel Rappin](https://p
   - Processing fee, shipping fee
   - Participate as affiliates/third-party sales (powered backend via [Stripe Connect](https://stripe.com/en-sg/connect))
 #### For administrators
+  - Admin login with 2FA
   - Admin Dashboard (content management, inventory, discount codes, etc)
   - Purchase tickets on behalf of customers via:
     - Cash (e.g. at ticket office)
@@ -60,4 +61,5 @@ Based on [Take My Money: Accepting Payments on the Web by Noel Rappin](https://p
   - Run server: `rails s`
   - Run jobs: `rake jobs:work`
   - Run tests: `rspec spec/`
+  - Run rake task to create `plans` for subscriptions: `rake theater:create_plans`
 
