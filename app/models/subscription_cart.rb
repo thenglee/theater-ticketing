@@ -15,7 +15,7 @@ class SubscriptionCart
   end
 
   def total_cost
-    subscriptions.map(&:plan).map(&:price).sum
+    Money.new(subscriptions.map(&:plan).map(&:price).sum)
   end
 
   def item_ids
