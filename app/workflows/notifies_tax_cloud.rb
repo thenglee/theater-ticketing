@@ -16,7 +16,7 @@ class NotifiesTaxCloud
   end
 
   def run
-    if valid_amount?
+    if payment.payment_method != "paypal" && valid_amount?
       result = tax_calculator.authorized_with_capture(payment.reference)
       @success = (result == "OK")
     else
