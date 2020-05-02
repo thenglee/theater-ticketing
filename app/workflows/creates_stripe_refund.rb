@@ -37,7 +37,9 @@ class CreatesStripeRefund
 
   def on_success
     RefundMailer.notify_success(payment_to_refund).deliver_later
-    NotifyTaxCloudOfRefundJob.perform_later(payment_to_refund)
+    if payment_to_refund.original_payment.billing_address.present?
+      NotifyTaxCloudOfRefundJob.perform_later(payment_to_refund)
+    end
   end
 
   def on_failure
